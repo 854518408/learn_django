@@ -37,9 +37,19 @@ pytharm 自带了mysql可视化图形界面,最右边第二个
 
 render实际上返回的是django.template.loader.render_to_string（）和传递的参数。也是HttpReaponse对象
 
+一对多添加到多的一方
+#auto_now=False(表示保存对象时自动设置该字段为当前时间,用于做最后一次修改的时间戳)  
+#auto_now_add=False(表示当前对象第一次被创建时自动设置当前时间,用于创建的时间戳)
 
-
-
+on_delete=None,               # 删除关联表中的数据时,当前表与其关联的field的行为
+on_delete=models.CASCADE,     # 删除关联数据,与之关联也删除
+on_delete=models.DO_NOTHING,  # 删除关联数据,什么也不做
+on_delete=models.PROTECT,     # 删除关联数据,引发错误ProtectedError
+# models.ForeignKey('关联表', on_delete=models.SET_NULL, blank=True, null=True)
+on_delete=models.SET_NULL,    # 删除关联数据,与之关联的值设置为null（前提FK字段需要设置为可空,一对一同理）
+# models.ForeignKey('关联表', on_delete=models.SET_DEFAULT, default='默认值')
+on_delete=models.SET_DEFAULT, # 删除关联数据,与之关联的值设置为默认值（前提FK字段需要设置默认值,一对一同理）
+on_delete=models.SET,         # 删除关联数据,
 
 
 
