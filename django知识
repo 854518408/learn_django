@@ -35,6 +35,7 @@ pytharm 自带了mysql可视化图形界面,最右边第二个
 判断是否匹配成功,没有成功则报错返回404状态码,未找到指定的路径;
 成功则找到对应的视图,执行视图的内容;无论成功与否,都会将响应返回给前端页面
 
+render实际上返回的是django.template.loader.render_to_string（）和传递的参数。也是HttpReaponse对象
 
 
 
