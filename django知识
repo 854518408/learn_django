@@ -52,6 +52,15 @@ on_delete=models.SET_DEFAULT, # 删除关联数据,与之关联的值设置为�
 on_delete=models.SET,         # 删除关联数据,
 
 
+models中的CRUD
+C:example1:     obj=UserInfo(bookname='',...)
+		obj.save()
+  example2:     obj.objects.create(bookname='',...)
+ 
+U:example1:	obj.onjects.get(id=3)
+		obj.bookname=''
+		obj.save()
+  example2:	obj.objects.filter(id=3).update(bookname='')
 
 
 
