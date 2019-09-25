@@ -63,6 +63,16 @@ U:example1:	obj.onjects.get(id=3)
   example2:	obj.objects.filter(id=3).update(bookname='')
 
 
+9.25
+查询数据的过滤
+obj.objects.filter(age__gt=20)
+参数说明:__gt:大于
+	__gte:大于等于
+	__lt:小于
+	__lte:小于等于
+	__contains:带有那个字符串
+	__startwith:以...开头
+	
 
 
 
