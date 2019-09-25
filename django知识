@@ -71,7 +71,19 @@ obj.objects.filter(age__gt=20)
 	__lt:小于
 	__lte:小于等于
 	__contains:带有那个字符串
+	__icontains:带有那个字符串,忽略大小写
 	__startwith:以...开头
+	__istartwith:以...开头,忽略大小写
+	__in:存在于一个list范围内
+	__endwith:以...结尾,忽略大小写
+	__iendwith:以...结尾,忽略大小写
+	__range:在...范围内 可以是tuple 也可以是 list
+	__year 日期字段的年份
+	__month 日期字段的月份
+	__day 日期字段的日
+	__exact:精确等于
+	__iexact:忽略大小写,精确等于
+	
 	
 
 
