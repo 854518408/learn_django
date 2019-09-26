@@ -85,6 +85,20 @@ obj.objects.filter(age__gt=20)
 	__iexact:忽略大小写,精确等于
 	
 	
+9.26
+不使用django ORM
+当不使用ORM对象模型映射时,可以有其他的方式连接数据库
+第一种是pymysql,mysql数据库会讲到
+第二种是django的db包中的connection
+from django.db import connection
+cur = connection.cursor()
+    conn=cur.execute('select * from userInfo;')
+    for obj in cur.fetchall():
+        print(obj)
+    print(type(conn))
 
+#不用写数据库连接说明,因为以及在settings.py文件夹中写了
+返回的obj是元祖
 
+第三种是sqlalchemy 模块
 
