@@ -101,4 +101,5 @@ cur = connection.cursor()
 返回的obj是元祖
 
 第三种是sqlalchemy 模块
+链接地址为:https://www.jianshu.com/p/637ede0939d1 还可以理解
 
