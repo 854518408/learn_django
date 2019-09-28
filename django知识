@@ -103,3 +103,34 @@ cur = connection.cursor()
 第三种是sqlalchemy 模块
 链接地址为:https://www.jianshu.com/p/637ede0939d1 还可以理解
 
+
+9.28
+重写Manager管理器方法
+自定义类名,使之继承models.Manager类
+    def all(self):
+        return super().filter(is_deleted=False)
+
+    def my_create(self,bookname,publictime):
+        print('这是进行定义的创建方法')
+        print(self.model)
+        obj=self.model()
+        obj.bookname=bookname
+        obj.publictime=publictime
+        obj.save()
+        return obj
+在重写父类中已出现的方法即可,并且还要在对应的模型类中注册
+book_manager=BookManager()
+book_manager为注册的名字,BookManager为自定义的类名
+注册成功以后即可用obj.book_manager.all()
+		obj.book_manager.my_create()使用了
+此时以不能使用obj.objects....原来的manager管理器了
+
+
+
+url路径匹配参数
+url(r'^deletebook/(?P<id>\d+)$',Delete.as_view()),
+deletebook为路径名,此路径还需要加一个参数,该参数用id绑定,在视图层便可在def deletebook(request,id)后面
+继续加参数了.
+
+
+
