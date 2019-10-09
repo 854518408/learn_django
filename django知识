@@ -154,3 +154,10 @@ GET /goods 展示所有的商品  列表页
 GET /goods/9  获取id为9的详细信息 详情页
 PUT /goods/9  更新某一个商品 路径一样,请求方式不一样
 
+
+10.8
+基于类的视图-一级视图特点
+传递给处理程序方法的请求将是REST框架的Request实例，而不是Django的HttpRequest实例。
+处理程序方法可能返回REST框架的Response而不是Django的HttpResponse。该视图将管理内容协商并在响应上设置正确的渲染器。
+任何APIException异常都将被捕获并调解为适当的响应。
+在将请求分派到处理程序方法之前，将对传入的请求进行身份验证并进行适当的权限和/或限制检查。
