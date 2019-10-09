@@ -161,3 +161,54 @@ PUT /goods/9  更新某一个商品 路径一样,请求方式不一样
 处理程序方法可能返回REST框架的Response而不是Django的HttpResponse。该视图将管理内容协商并在响应上设置正确的渲染器。
 任何APIException异常都将被捕获并调解为适当的响应。
 在将请求分派到处理程序方法之前，将对传入的请求进行身份验证并进行适当的权限和/或限制检查。
+
+
+#基于类的视图,三级视图的概括
+from django.contrib.auth.models import User
+from django.http import HttpResponse,JsonResponse
+
+# Create your views here.
+from django.views.generic.base import View
+from .serializers import *
+from rest_framework.renderers import JSONRenderer
+from rest_framework import generics
+
+#todo:三级视图练习 generics.ListAPIView
+class Test2(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+
+class Test(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+
+class Test3(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+
+class Test4(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+
+class Test5(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+
+    def perform_destroy(self, instance):
+        instance.is_active=False
+        instance.save()
+
+#基本三级视图的get,post,get,put,patch,delete接口
+#还可以组合使用
+#todo:generics.ListCreateAPIView 列表接口,新增接口
+#todo:generics.RetrieveUpdateAPIView 详情接口,更新接口
+#todo:generics.RetrieveUpdateDestroyAPIView 详情接口,更新接口,删除接口
+#todo:generics.RetrieveDestroyAPIView 详情接口,删除接口
+'''当调用二级视图的get_object()方法时,则需要在url路径中加入参数了
+最好路径参数写pk,因为GenericAPIView 默认识别的参数是pk,如果参数为id
+则需要在对应的三级视图中写lookup_field = 'id' 这个属性
+'''
+
+
+
+
